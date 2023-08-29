@@ -1,0 +1,33 @@
+#https://qiskit.org/textbook/ch-algorithms/quantum-key-distribution.html
+
+
+import qiskit 
+import numpy.random as randint
+
+n = 100
+# Step 1
+alice_bits = randint(2, size=n)
+alice_bases = randint(2, size=n)
+# Step 2
+message = encode_message(alice_bits, alice_bases)
+# Interception!
+eve_bases = randint(2, size=n)
+intercepted_message = measure_message(message, eve_bases)
+# Step 3
+bob_bases = randint(2, size=n)
+bob_results = measure_message(message, bob_bases)
+# Step 4
+bob_key = remove_garbage(alice_bases, bob_bases, bob_results)
+alice_key = remove_garbage(alice_bases, bob_bases, alice_bits)
+# Step 5
+sample_size = 15 # Change this to something lower and see if 
+                 # Eve can intercept the message without Alice
+                 # and Bob finding out
+bit_selection = randint(n, size=sample_size)
+bob_sample = sample_bits(bob_key, bit_selection)
+alice_sample = sample_bits(alice_key, bit_selection)
+
+if bob_sample != alice_sample:
+    print("Eve's interference was detected.")
+else:
+    print("Eve went undetected!")
