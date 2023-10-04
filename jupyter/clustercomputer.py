@@ -24,8 +24,8 @@ class QuantumClusterComputer:
         result = job.result()
         return result
 
-    def handle_request(self, request):
-        # Assuming the request contains a Qiskit QuantumCircuit object
+    def handle_request(self, request): 
+        # Request contain information about what task to handle, that may be communicating with the router, or handling a quantum task
         quantum_circuit = request['quantum_circuit']
         result = self.execute_quantum_computation(quantum_circuit)
         return result
