@@ -1,0 +1,36 @@
+import socket
+'''
+Id number - 3 bits
+Packet Type - 1 bit 
+Data Length - 12 bits 
+Data - 4079 bits
+Pad with 0's 
+
+
+Add more types if needed 
+Version 2: add error correction
+
+We know the size of the data and when the packet ends because of the data length 
+
+
+Goals -> interpret a socket bitstream as a python object to easierly identify data
+
+'''
+# data = clinet_sock(recv(1024))
+
+class protocol:
+    id_number = 0;
+    packet_type = 0;
+    data_length = 0;
+    data = 0;
+    
+    padding = 0;
+    
+    def __init__(self, socket.bytearray):
+        id_number = 0;
+        packet_type = 0;
+        data_length = 0;
+        data = 0;
+    
+
+print("Hello")
