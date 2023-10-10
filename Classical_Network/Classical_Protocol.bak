@@ -16,7 +16,7 @@ We know the size of the data and when the packet ends because of the data length
 Goals -> interpret a socket bitstream as a python object to easierly identify data
 
 '''
-
+# data = clinet_sock(recv(1024))
 
 class protocol:
     id_number = 0;
@@ -26,11 +26,12 @@ class protocol:
     
     padding = 0;
     
-    def __init__(self, socket.SOCK_STREAM):
-        id_number = 0;
-        packet_type = 0;
-        data_length = 0;
-        data = 0;
+    def __init__(self, socket.bytearray):
+        id_number = bin((socket.bytearray >> 0) & 0b111);
+        packet_type = bin(socket.bytearray >> 4);
+        data_length = bin(<socket.bytearray >> 5) & 0b11111111);
+        data = bin(<socket.bytearray >> 27) & 0b111111111111);
     
-
+    
+   
 print("Hello")
