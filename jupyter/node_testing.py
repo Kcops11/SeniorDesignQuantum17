@@ -12,6 +12,7 @@ print("B")
 
 while(True):
     msg = input("Input message>> ")
+    node.connect()
     node.sendMessage(msg)
 print("C")
 

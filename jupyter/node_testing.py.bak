@@ -10,7 +10,7 @@ print("A")
 node.connect()
 print("B")
 
-while(true)
+while(True):
     msg = input("Input message>> ")
     node.sendMessage(msg)
 print("C")
