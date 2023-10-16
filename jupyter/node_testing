@@ -1,0 +1,16 @@
+# Main file for testing cluster computer
+
+from router import Router
+from clustercomputer import QuantumClusterComputer
+
+node = QuantumClusterComputer('', 5001)
+
+
+
+node.connect_to_router()
+node.listen_for_requests()
+node.parse_request()
+
+
+
+print("good")

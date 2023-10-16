@@ -42,7 +42,6 @@ class QuantumClusterComputer:
     def parse_request(self, data):
         # Implement your request parsing logic
         # Quantum Instructions goes here  
-        print(data)
         pass
 
     def send_response(self, response):
