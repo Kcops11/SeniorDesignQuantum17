@@ -17,19 +17,24 @@ class Router:
         self.serverSocket.listen(5)
         (self.clientSocket, addr) = self.serverSocket.accept()
         print ('Got a connection from {}'.format(str(addr)))
-        while True:
-            self.recieveMessage()
+        
+        t1 = threading.Thread(target=self.recieveMessage,)
+        t1.start()
+        
             
     def sendMessage(self, message):
         # not working - need to set client to listen
         self.clientSocket.send(message.encode('ascii'))
 
     def recieveMessage(self):
-        (self.clientSocket, addr) = self.serverSocket.accept()
-        message = self.clientSocket.recv(1024).decode('ascii')
-        
-        self.sendMessage("Recieved: " + message)
-        print(message)
+        while(1):
+            (self.clientSocket, addr) = self.serverSocket.accept()
+            message = self.clientSocket.recv(1024).decode('ascii')
+            print(message)
+            
+            if message == "quit":
+                self.closeSocket()
+                t1.join()
 
     def closeSocket(self):
         self.serverSocket.close()

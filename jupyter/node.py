@@ -11,12 +11,17 @@ class nodeComputer:
         self.serverSocket = socket.socket()
         self.serverSocket.connect((self.router_host, self.router_port))
 
-    def getMessage(self):
-        return self.serverSocket.recv(1024).decode('ascii')
+    def recieveMessage(self):
+        message = self.serverSocket.recv(1024).decode('ascii')
+        print(message)
+        if message == "quit":
+            self.closeSocket()
 
     def sendMessage(self, message):
         self.serverSocket.send(message.encode('ascii'))
+        if message == "quit":
+            self.closeSocket()
 
-    def closeConnection(self):
+    def closeSocket(self):
         self.serverSocket.close()
 
