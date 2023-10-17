@@ -1,4 +1,5 @@
 # Main file for testing router.py
+import time
 '''
 USE ORDER
 1 make object
@@ -16,7 +17,8 @@ r = Router('127.0.0.1', 5001)
 r.bind()
 print("1")
 r.run()
-print("2")
-
+while(1):
+    time.sleep(5)
+    r.sendMessage("Hi")
 
 print("Router Done")

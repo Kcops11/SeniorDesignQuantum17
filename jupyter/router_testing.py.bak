@@ -16,10 +16,8 @@ r = Router('127.0.0.1', 5001)
 r.bind()
 print("1")
 r.run()
-print("2")
-#while(True):
-   # r.recieveMessage()
-print("3")
-#r.close()
+while(1):
+    sleep(5)
+    r.sendMessage("Hi")
 
 print("Router Done")
