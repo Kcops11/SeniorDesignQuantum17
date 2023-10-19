@@ -23,7 +23,6 @@ class Router:
         
             
     def sendMessage(self, message):
-        # not working - need to set client to listen
         self.clientSocket.send(message.encode('ascii'))
 
     def recieveMessage(self):

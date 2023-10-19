@@ -20,8 +20,7 @@ class Router:
         
         t1 = threading.Thread(target=self.recieveMessage,)
         t1.start()
-        #while True:
-        #    self.recieveMessage()
+        
             
     def sendMessage(self, message):
         # not working - need to set client to listen
