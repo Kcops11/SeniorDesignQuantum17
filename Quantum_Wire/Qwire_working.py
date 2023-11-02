@@ -36,7 +36,7 @@ qc.append(init_gate, [0])
 # Prepare an entangled Bell pair between Alice and Bob
 qc.h(1)
 qc.cx(1, 2)
-
+qc.barrier()
 # Entangle the state to be teleported with Alice's qubit
 qc.cx(0, 1)
 qc.h(0)
