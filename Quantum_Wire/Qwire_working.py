@@ -26,9 +26,6 @@ def random_state(nqubits):
 
 psi = random_state(1)
 
-
-
-
 # Create a quantum circuit with 3 qubits
 qc = QuantumCircuit(3, 2)
 qc2 = QuantumCircuit(3, 1)
