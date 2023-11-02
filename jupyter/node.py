@@ -1,11 +1,13 @@
 import qiskit  # Ensure you have Qiskit installed
 import socket
 import threading
+import time
 
 class nodeComputer:
-    def __init__(self, router_host, router_port):
+    def __init__(self, router_host, router_port, ip):
         self.router_host = router_host
         self.router_port = router_port
+        self.ip = ip
         self.serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def connect(self):
@@ -30,3 +32,9 @@ class nodeComputer:
     def closeSocket(self):
         self.serverSocket.close()
 
+    def doWorkTest(self):
+        numbers = [1, 2, 3, 4, 5]
+        for n in numbers:
+            print("Node " + self.ip + " doing work, step " + str(n))
+        
+        print("Work is done!")

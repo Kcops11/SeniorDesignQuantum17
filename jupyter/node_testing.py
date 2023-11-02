@@ -4,7 +4,8 @@ from router import Router
 from node import nodeComputer
 
 node = nodeComputer('127.0.0.1', 5001)
-
+#router = Router('127.1.1.1','1111')
+ 
 
 print("A")
 node.connect()
