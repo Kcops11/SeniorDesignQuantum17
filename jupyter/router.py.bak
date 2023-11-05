@@ -1,6 +1,14 @@
 import socket
 import threading
+'''
+USE ORDER
+1 make object
+2 bind()
+3 run ()
+4 recieve() 
+5 close()
 
+'''
 class Router:
     def __init__(self, host, port):
         self.host = host
@@ -9,10 +17,12 @@ class Router:
         self.clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def bind(self):
+        # binds self to port - you can pretty 
         self.serverSocket.bind((self.host, self.port))
         self.serverSocket.listen(5)
              
     def run(self):
+        # waits for a connection from the nodes. Should be placed in a while loop 
         print ('Waiting for a connection')
         self.serverSocket.listen(5)
         (self.clientSocket, addr) = self.serverSocket.accept()
@@ -23,7 +33,6 @@ class Router:
         
             
     def sendMessage(self, message):
-        # not working - need to set client to listen
         self.clientSocket.send(message.encode('ascii'))
 
     def recieveMessage(self):
