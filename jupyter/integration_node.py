@@ -16,7 +16,4 @@ for n in nodes:
     print("Node", n.router_host, "connected")
     n.doWorkTest()
     print("Node", n.router_host, "on standby")
-    n.closeSocket()
-    print("Node", n.router_host, "disconnected")
-
 
