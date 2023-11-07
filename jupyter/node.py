@@ -26,7 +26,7 @@ class nodeComputer:
         self.serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def connect(self):
-        #connects self to router - router should be started first 
+        #connects self to router - router should be started first. 
         self.serverSocket = socket.socket()
         self.serverSocket.connect((self.router_host, self.router_port))
         
