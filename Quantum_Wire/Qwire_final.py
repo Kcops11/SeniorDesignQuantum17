@@ -155,27 +155,28 @@ def Bob_measure(Bob_statevector, inverse_init_gate ,simulator, debug = False):
     -> router will get 3 information bits which will be used for histogram.
 '''
 
-#Step 0. We set simulator as "statevector_simulator"
-simulator = Aer.get_backend('statevector_simulator')
+def quantum_function():
+    #Step 0. We set simulator as "statevector_simulator"
+    simulator = Aer.get_backend('statevector_simulator')
 
-#Step 1. initialize random qubit (it is our information)
-psi = random_state(1)
-init_gate = Initialize(psi)
-inverse_init_gate = init_gate.gates_to_uncompute()
-init_statevector = information_initialize_to_statevector(init_gate, simulator, False)
-compound_statevector = compound_information_zero_states(init_statevector, False)
+    #Step 1. initialize random qubit (it is our information)
+    psi = random_state(1)
+    init_gate = Initialize(psi)
+    inverse_init_gate = init_gate.gates_to_uncompute()
+    init_statevector = information_initialize_to_statevector(init_gate, simulator, False)
+    compound_statevector = compound_information_zero_states(init_statevector, False)
 
-#Step 2. Proceed Alice's quantum operation (not measuring)
-Bell_info_statevector = Alice_quantum_operation(compound_statevector,simulator,False)
+    #Step 2. Proceed Alice's quantum operation (not measuring)
+    Bell_info_statevector = Alice_quantum_operation(compound_statevector,simulator,False)
 
-#Step 3. Alice Meausre her qubit.
-#Measured outcome also inverted.(little endian) 1st : information, 2nd : Alice's Bell states
-Alice_measurement_result , Alice_statevector = Alice_measure(Bell_info_statevector, simulator, False)
-print(Alice_measurement_result)
+    #Step 3. Alice Meausre her qubit.
+    #Measured outcome also inverted.(little endian) 1st : information, 2nd : Alice's Bell states
+    Alice_measurement_result , Alice_statevector = Alice_measure(Bell_info_statevector, simulator, False)
+    print(Alice_measurement_result)
 
-#Step 4. Bob's quantum operation (not measureing)
-Bob_statevector = Bob_quantum_opertaion(Alice_measurement_result, Alice_statevector, simulator, False)
+    #Step 4. Bob's quantum operation (not measureing)
+    Bob_statevector = Bob_quantum_opertaion(Alice_measurement_result, Alice_statevector, simulator, False)
 
-#Step 5. Bob Meausre his qubit.
-Bob_measurement_result = Bob_measure(Bob_statevector, inverse_init_gate, simulator, False)
-print(Bob_measurement_result)
+    #Step 5. Bob Meausre his qubit.
+    Bob_measurement_result = Bob_measure(Bob_statevector, inverse_init_gate, simulator, False)
+    print(Bob_measurement_result)

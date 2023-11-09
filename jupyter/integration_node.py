@@ -14,6 +14,7 @@ for i in range(1000):
 for n in nodes:
     n.connect()
     print("Node", n.router_host, "connected")
-    n.doWorkTest()
+    n.doWork()
     print("Node", n.router_host, "on standby")
+    time.sleep(3)
 

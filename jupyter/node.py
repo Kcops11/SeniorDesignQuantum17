@@ -2,6 +2,21 @@ import qiskit  # Ensure you have Qiskit installed
 import socket
 import threading
 import time
+import sys
+from pathlib import Path
+
+# Get the absolute path to the Quantum_Wire directory
+current_dir = Path(__file__).resolve().parent
+
+print(current_dir)
+quantum_wire_dir = current_dir.parent / 'Quantum_Wire'
+print(quantum_wire_dir)
+
+# Add the Quantum_Wire directory to sys.path
+sys.path.append(str(quantum_wire_dir))
+
+# Now you can import from Quantum_Wire or any subdirectories within it
+from Qwire_final import quantum_function
 '''
 USAGE - this sends a user input to the connected router
 
@@ -50,9 +65,5 @@ class nodeComputer:
     def closeSocket(self):
         self.serverSocket.close()
 
-    def doWorkTest(self):
-        numbers = [1, 2, 3, 4, 5]
-        for n in numbers:
-            print("Node " + self.ip + " doing work, step " + str(n))
-        
-        print("Work is done!")
+    def doWork(self):
+        quantum_function()
