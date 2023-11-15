@@ -10,6 +10,24 @@ from qiskit.visualization import plot_histogram
 from qiskit.extensions import Initialize
 from qiskit.quantum_info import Statevector, random_statevector
 
+def gen_Bell(simulator, debug = False):
+    statevector_bell = Statevector.from_label('00')
+    qc_gen_Bell = QuantumCircuit(2,global_phase = 0)
+    qc_gen_Bell.h(1)
+    qc_gen_Bell.cx(1, 2)
+    job_gen_Bell = execute(qc_gen_Bell, simulator, shots=1)
+    result_gen_Bell = job_gen_Bell.result()
+    Bell_statevector = result_gen_Bell.get_statevector()
+    if debug == True:
+        print("--------------------------------------------------------")
+        print("Quantum Circuit _ statevector\n")
+        print(qc_gen_Bell)
+        print(Bell_statevector.data)
+        print("--------------------------------------------------------")
+    return Bell_statevector
+
+
+
 
 def Entanglement_verification():
     verification = 0
@@ -179,4 +197,6 @@ def quantum_function():
 
     #Step 5. Bob Meausre his qubit.
     Bob_measurement_result = Bob_measure(Bob_statevector, inverse_init_gate, simulator, False)
+
     print(Bob_measurement_result)
+
