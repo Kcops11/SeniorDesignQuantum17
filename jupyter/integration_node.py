@@ -20,5 +20,5 @@ for n in nodes:
     print("Node", n.ip, "on standby")
     num_nodes += 1 
     print(f"Num nodes: {num_nodes}")
-    time.sleep(10)
+    time.sleep(3)
 

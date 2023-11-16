@@ -20,12 +20,12 @@ class Router:
     def bind(self):
         # binds self to port 
         self.serverSocket.bind((self.host, self.port))
-        self.serverSocket.listen(5)
+        self.serverSocket.listen(1000)
              
     def run(self):
         # waits for a connection from the nodes. Should be placed in a while loop 
         print ('Waiting for a connection')
-        self.serverSocket.listen(5)
+        self.serverSocket.listen(1000)
         (self.clientSocket, addr) = self.serverSocket.accept()
         print ('Got a connection from {}'.format(str(addr)))
         
