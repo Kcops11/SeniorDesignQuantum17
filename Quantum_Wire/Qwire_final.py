@@ -190,7 +190,6 @@ def quantum_function():
     #Step 3. Alice Meausre her qubit.
     #Measured outcome also inverted.(little endian) 1st : information, 2nd : Alice's Bell states
     Alice_measurement_result , Alice_statevector = Alice_measure(Bell_info_statevector, simulator, False)
-    print(Alice_measurement_result)
 
     #Step 4. Bob's quantum operation (not measureing)
     Bob_statevector = Bob_quantum_opertaion(Alice_measurement_result, Alice_statevector, simulator, False)
@@ -198,5 +197,5 @@ def quantum_function():
     #Step 5. Bob Meausre his qubit.
     Bob_measurement_result = Bob_measure(Bob_statevector, inverse_init_gate, simulator, False)
 
-    print(Bob_measurement_result)
+    return(Alice_measurement_result,Bob_measurement_result)
 
