@@ -31,7 +31,7 @@ class Router:
                 self.messages.append(message)  # Storing the message
                 # use the below statement if you want to see the array
                 # warning, large amounts of data
-                #print(f"current message array: {self.messages}")
+                # print(f"current message array: {self.messages}")
             except ConnectionResetError:
                 print("Connection reset by peer")
                 break

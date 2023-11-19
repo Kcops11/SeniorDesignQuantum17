@@ -16,8 +16,7 @@ for i in range(1000):
 for n in nodes:
     n.connect()
     print("Node", n.ip, "connected")
-    data = n.doWork()
-    n.sendMessage(data)
+    n.doWork()
     print("Node", n.ip, "on standby")
     n.sendMessage("quit")
     print("Node", n.ip, "disconnected")

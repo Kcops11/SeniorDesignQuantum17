@@ -173,7 +173,8 @@ def Bob_measure(Bob_statevector, inverse_init_gate ,simulator, debug = False):
     -> router will get 3 information bits which will be used for histogram.
 '''
 
-def quantum_function():
+
+def quantum_function_step_one():
     #Step 0. We set simulator as "statevector_simulator"
     simulator = Aer.get_backend('statevector_simulator')
 
@@ -183,19 +184,37 @@ def quantum_function():
     inverse_init_gate = init_gate.gates_to_uncompute()
     init_statevector = information_initialize_to_statevector(init_gate, simulator, False)
     compound_statevector = compound_information_zero_states(init_statevector, False)
+    return simulator,inverse_init_gate, compound_statevector
 
+def quantum_function_step_two(simulator,compound_statevector):
     #Step 2. Proceed Alice's quantum operation (not measuring)
     Bell_info_statevector = Alice_quantum_operation(compound_statevector,simulator,False)
+    return Bell_info_statevector
 
+def quantum_function_step_three(simulator, Bell_info_statevector):
     #Step 3. Alice Meausre her qubit.
     #Measured outcome also inverted.(little endian) 1st : information, 2nd : Alice's Bell states
     Alice_measurement_result , Alice_statevector = Alice_measure(Bell_info_statevector, simulator, False)
+    return Alice_measurement_result, Alice_statevector
 
+def quantum_function_step_four(simulator,Alice_measurement_result, Alice_statevector):
     #Step 4. Bob's quantum operation (not measureing)
     Bob_statevector = Bob_quantum_opertaion(Alice_measurement_result, Alice_statevector, simulator, False)
+    return Bob_statevector
 
+def quantum_function_step_five(simulator,Bob_statevector, inverse_init_gate):
     #Step 5. Bob Meausre his qubit.
     Bob_measurement_result = Bob_measure(Bob_statevector, inverse_init_gate, simulator, False)
 
-    return(Alice_measurement_result,Bob_measurement_result)
+    return(Bob_measurement_result)
+
+    # data1[0] = simulator
+    # data1[1] = inverse_init_gate
+    # data1[2] = compound_statevector
+    # data2[0] = Bell_info_statevector
+    # data3[0] = Alice_measurement_result
+    # data3[1] = Alice_statevector
+    # data4[0] = Bob_statevector
+    # data5[0] = Bob_measurement_result
+
 

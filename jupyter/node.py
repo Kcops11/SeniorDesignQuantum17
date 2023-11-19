@@ -16,7 +16,7 @@ print(quantum_wire_dir)
 sys.path.append(str(quantum_wire_dir))
 
 # Now you can import from Quantum_Wire or any subdirectories within it
-from Qwire_final import quantum_function
+from Qwire_final import quantum_function_step_one,quantum_function_step_two,quantum_function_step_three,quantum_function_step_four,quantum_function_step_five
 
 
 
@@ -62,4 +62,10 @@ class nodeComputer:
 
 
     def doWork(self):
-        return quantum_function()
+        data1 = quantum_function_step_one ()
+        data2 = quantum_function_step_two(data1[0], data1[2])
+        data3 = quantum_function_step_three(data1[0],data2)
+        self.sendMessage(data3[0])
+        data4 = quantum_function_step_four(data1[0],data3[0], data3[1])
+        data5 = quantum_function_step_five(data1[0],data4,data1[1])
+        self.sendMessage(data5)
