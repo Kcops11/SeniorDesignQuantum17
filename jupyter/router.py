@@ -1,5 +1,7 @@
 import socket
 import threading
+import histogram
+import time
 
 class Router:
     def __init__(self, host, port):
@@ -28,10 +30,15 @@ class Router:
                 if message == "quit":
                     # Optionally, send acknowledgment to client before breaking
                     break
-                self.messages.append(message)  # Storing the message
-                # use the below statement if you want to see the array
-                # warning, large amounts of data
-                # print(f"current message array: {self.messages}")
+                if message =='finalQuit':
+                    histogram.makeHistogramArray(self.messages)
+                    #print("I am quitting")
+                    break
+                else:
+                    self.messages.append(message)  # Storing the message
+                    # use the below statement if you want to see the array
+                    # # warning, large amounts of data
+                    # print(f"current message array: {self.messages}")  
             except ConnectionResetError:
                 print("Connection reset by peer")
                 break
@@ -41,6 +48,7 @@ class Router:
         clientSocket.close()
 
     def close_socket(self):
+        #histogram.makeHistogramArray(self.messages)
         self.serverSocket.close()
 
     def get_messages(self):
